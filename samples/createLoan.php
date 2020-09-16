@@ -54,6 +54,6 @@ $result = $sdk->createLoan([
 if ($result) {
     print 'Loan created';
 } else {
-    print 'Errors!';
+    print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
     print_r($sdk->getErrors());
 }

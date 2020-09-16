@@ -12,12 +12,17 @@ use incomeSDK\Models\Loan;
  */
 class Client
 {
-    const BASE_URL = 'https://income-backoffice.code-lab.it/';
+    const BASE_URL = 'https://income-backoffice.code-lab.it/lo-api/';
 
     /**
      * @var array
      */
     private $errors;
+
+    /**
+     * @var int
+     */
+    private $statusCode;
 
     /**
      * @var HttpClient
@@ -41,6 +46,14 @@ class Client
     }
 
     /**
+     * Get response errors
+     * @return array
+     */
+    public function getStatusCode() {
+        return $this->statusCode;
+    }
+
+    /**
      * Create (list) new Loan
      * @param array $loanData
      * @return bool
@@ -48,7 +61,8 @@ class Client
     public function createLoan(array $loanData): bool
     {
         try {
-            $response = $this->client->request('loans/store', ['loan' => $loanData]);
+            $response = $this->client->request('loans/store', ['loan' => $loanData], 'POST');
+            $this->statusCode = $response->statusCode;
 
             if ($response->statusCode === 200 && $response->result['success']) {
                 return true;

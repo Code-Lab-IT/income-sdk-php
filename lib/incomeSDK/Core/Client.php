@@ -47,7 +47,7 @@ class Client
 
     /**
      * Get response errors
-     * @return array
+     * @return int
      */
     public function getStatusCode() {
         return $this->statusCode;

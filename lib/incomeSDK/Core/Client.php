@@ -36,7 +36,8 @@ class Client
      * @param string $apiKey Api key
      * @param bool $devMode - use localhost for base url
      */
-    public function __construct($apiKey, $devMode = false) {
+    public function __construct($apiKey, $devMode = false)
+    {
 
         $this->client = new HttpClient($devMode ? self::BASE_URL_DEV : self::BASE_URL_PROD, $apiKey);
     }
@@ -60,18 +61,20 @@ class Client
     }
 
     /**
-     * Create (list) new Loan
-     * @param array $loanData
-     * @return bool
+     * Make http request
+     * @param string $path
+     * @param $data
+     * @param string|null $method
+     * @return mixed
      */
-    public function createLoan(array $loanData): bool
+    public function httpRequest(string $path, $data = null, string $method = null)
     {
         try {
-            $response = $this->client->request('loans/store', ['loan' => $loanData], 'POST');
+            $response = $this->client->request($path, $data, $method);
             $this->statusCode = (int)$response->statusCode;
 
             if ($response->statusCode === 200 && $response->result['success']) {
-                return true;
+                return $response->result['data'] ?? $response->result;
             }
 
             $this->errors = $response->result['message'] ?? [];
@@ -85,9 +88,37 @@ class Client
     }
 
     /**
+     * Create (list) new Loan
+     * @param array $loanData
+     * @return bool
+     */
+    public function createLoan(array $loanData): bool
+    {
+        $response = $this->httpRequest('loans/store', ['loan' => $loanData], 'POST');
+
+        return (bool)$response;
+    }
+
+    /**
+     * Return loans list (array with Loan objects)
      * @return Loan[]
      */
-    public function getLoansList() {
+    public function getLoansList(): array
+    {
+        $response = $this->httpRequest('loans/list');
 
+        return Loan::createListFromArray($response);
+    }
+
+    /**
+     * Return details (Loan object)
+     * @param int $id - income_loan_id or loan_id
+     * @return Loan|null
+     */
+    public function getLoansDetails($id)
+    {
+        $response = $this->httpRequest('loans/view/'.$id);
+
+        return $response && is_array($response) ? new Loan($response) : null;
     }
 }

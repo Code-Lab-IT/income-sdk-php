@@ -7,7 +7,12 @@ class BaseModel
     /**
      * @var array
      */
-    private $data;
+    protected $data;
+
+    public function __construct(array $data)
+    {
+        $this->data = $data;
+    }
 
     /**
      * @param string $name
@@ -34,13 +39,6 @@ class BaseModel
     public function __isset($name)
     {
         return isset($this->data[$name]);
-    }
-
-    /**
-     * @param array $data
-     */
-    public function setData(array $data) {
-        $this->data = $data;
     }
 
     /**

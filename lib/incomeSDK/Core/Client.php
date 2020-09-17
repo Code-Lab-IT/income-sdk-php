@@ -12,7 +12,9 @@ use incomeSDK\Models\Loan;
  */
 class Client
 {
-    const BASE_URL = 'https://income-backoffice.code-lab.it/lo-api/';
+    const BASE_URL_PROD = 'https://income-backoffice.code-lab.it/lo-api/';
+
+    const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
     /**
      * @var array
@@ -32,16 +34,19 @@ class Client
     /**
      * incomeSDK constructor.
      * @param string $apiKey Api key
+     * @param bool $devMode - use localhost for base url
      */
-    public function __construct($apiKey) {
-        $this->client = new HttpClient(self::BASE_URL, $apiKey);
+    public function __construct($apiKey, $devMode = false) {
+
+        $this->client = new HttpClient($devMode ? self::BASE_URL_DEV : self::BASE_URL_PROD, $apiKey);
     }
 
     /**
      * Get response errors
-     * @return array
+     * @return array|string
      */
-    public function getErrors() {
+    public function getErrors()
+    {
         return $this->errors;
     }
 
@@ -49,7 +54,8 @@ class Client
      * Get response errors
      * @return int
      */
-    public function getStatusCode() {
+    public function getStatusCode(): int
+    {
         return $this->statusCode;
     }
 
@@ -62,13 +68,13 @@ class Client
     {
         try {
             $response = $this->client->request('loans/store', ['loan' => $loanData], 'POST');
-            $this->statusCode = $response->statusCode;
+            $this->statusCode = (int)$response->statusCode;
 
             if ($response->statusCode === 200 && $response->result['success']) {
                 return true;
             }
 
-            $this->errors = $response->result['message'] ?? null;
+            $this->errors = $response->result['message'] ?? [];
 
             return false;
 

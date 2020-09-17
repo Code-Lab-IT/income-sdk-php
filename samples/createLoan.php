@@ -4,7 +4,7 @@ require './env.php';
 
 use incomeSDK\Core\Client;
 
-$sdk = new Client(API_KEY);
+$sdk = new Client(API_KEY, DEV_MODE);
 
 $result = $sdk->createLoan([
     'loan_id' => '1111',

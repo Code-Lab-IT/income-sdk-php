@@ -31,19 +31,49 @@ $result = $sdk->createLoan([
             'insurance' => 'forward_fee',
             'penalty_fee' => 'interest',
         ],
-        'schedule' => [[
-            'rowno' => 1,
-            'date' => '2020-09-03',
-            'principal' => 155.2,
-            'interest' => 44.1,
-            'monthly_fee' => 10,
-        ], [
-            'rowno' => 2,
-            'date' => '2020-10-03',
-            'principal' => 155.2,
-            'interest' => 44.1,
-            'monthly_fee' => 10,
-        ],
+        'schedule' => [
+            [
+                'rowno' => 1,
+                'date' => '2020-09-03',
+                'principal' => 155.2,
+                'interest' => 44.1,
+                'monthly_fee' => 10,
+                'repayment' => [
+                    'total' => 209.3,
+                    'repaid' => true,
+                    'payments' => [
+                        [
+                            'date' => '2020-09-01',
+                            'amount' => 200.11,
+                        ],
+                        [
+                            'date' => '2020-09-08',
+                            'amount' => 9.19,
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'rowno' => 2,
+                'date' => '2020-10-03',
+                'principal' => 155.2,
+                'interest' => 44.1,
+                'monthly_fee' => 10,
+            ],
+            [
+                'rowno' => 3,
+                'date' => '2020-11-03',
+                'principal' => 155.2,
+                'interest' => 44.1,
+                'monthly_fee' => 10,
+            ],
+            [
+                'rowno' => 4,
+                'date' => '2020-12-03',
+                'principal' => 155.2,
+                'interest' => 44.1,
+                'monthly_fee' => 10,
+            ],
         ],
     ],
     'timezone' => 'America/Anguilla',

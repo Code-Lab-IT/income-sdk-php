@@ -1,6 +1,15 @@
 ## Income SDK
 
-IncomeSDK is a generic HTTP Requests.
+IncomeSDK is meant to exchange information between your application and Income backend. 
+
+## Installation
+
+To include the SDK in your project, download the SDK via composer: 
+
+```bash
+composer require income/income-sdk-php
+```
+
 
 ### Initialization
 

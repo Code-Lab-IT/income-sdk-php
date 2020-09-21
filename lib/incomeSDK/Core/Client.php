@@ -16,6 +16,10 @@ class Client
 
     const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
+    public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
+    public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
+    public const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+
     /**
      * @var array
      */
@@ -94,7 +98,7 @@ class Client
      */
     public function createLoan(array $loanData): bool
     {
-        $response = $this->httpRequest('loans/store', ['loan' => $loanData], 'POST');
+        $response = $this->httpRequest(static::CREATE_LOAN_ENDPOINT_URL, ['loan' => $loanData], 'POST');
 
         return (bool)$response;
     }
@@ -105,7 +109,7 @@ class Client
      */
     public function getLoansList(): array
     {
-        $response = $this->httpRequest('loans/list');
+        $response = $this->httpRequest(static::GET_LOANS_LIST_ENDPOINT_URL);
 
         return Loan::createListFromArray($response);
     }
@@ -117,7 +121,7 @@ class Client
      */
     public function getLoansDetails($id)
     {
-        $response = $this->httpRequest('loans/view/'.$id);
+        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL .$id);
 
         return $response && is_array($response) ? new Loan($response) : null;
     }

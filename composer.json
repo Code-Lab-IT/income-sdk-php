@@ -4,8 +4,9 @@
     "type": "library",
     "license": "MIT",
     "require": {
-        "php": "^7.0",
-        "ext-curl": "*"
+        "php": "^7.1",
+        "ext-curl": "*",
+        "ext-json": "*"
     },
     "autoload": {
         "psr-4": {

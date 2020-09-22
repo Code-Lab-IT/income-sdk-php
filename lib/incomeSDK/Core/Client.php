@@ -12,13 +12,13 @@ use incomeSDK\Models\Loan;
  */
 class Client
 {
-    const BASE_URL_PROD = 'https://income-backoffice.code-lab.it/lo-api/';
+    private const BASE_URL_PROD = 'https://income-backoffice.code-lab.it/lo-api/';
 
-    const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
+    private const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
-    const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
-    const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
-    const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+    private const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
+    private const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
+    private const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
 
     /**
      * @var array
@@ -119,7 +119,7 @@ class Client
      * @param int $id - income_loan_id or loan_id
      * @return Loan|null
      */
-    public function getLoansDetails($id)
+    public function getLoansDetails($id): ?Loan
     {
         $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL .$id);
 

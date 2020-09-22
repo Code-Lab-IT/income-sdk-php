@@ -20,7 +20,7 @@ class HttpRequest
     /**
      * @var array | string
      */
-    public $body = null;
+    public $body;
 
     /**
      * @var array

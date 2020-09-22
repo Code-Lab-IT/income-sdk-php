@@ -21,25 +21,6 @@ class HttpHeadersHelper
     }
 
     /**
-     * Returns an array representing headers with their key in original cases and updated values
-     * @param $rawHeaders
-     * @param $formattedHeaders
-     * @return array
-     */
-    public static function mapHeaders($rawHeaders, $formattedHeaders): array
-    {
-        $rawHeadersKey = array_keys($rawHeaders);
-
-        foreach ($rawHeadersKey as $array_key) {
-            if (array_key_exists(strtolower($array_key), $formattedHeaders)) {
-                $rawHeaders[$array_key] = $formattedHeaders[strtolower($array_key)];
-            }
-        }
-
-        return $rawHeaders;
-    }
-
-    /**
      * Created headers array for curl
      * @param $headers
      * @return array
@@ -59,18 +40,16 @@ class HttpHeadersHelper
 
     /**
      * Deserialize header from curl
-     * @param $header
-     * @param $key
-     * @param $value
+     * @param string $header
+     * @param string $key
+     * @param string $value
      */
-    public static function deserializeHeader($header, &$key, &$value)
+    public static function deserializeHeader($header, &$key, &$value): void
     {
         if (!empty($header) && strpos($header, ':') !== false) {
-
-            list($k, $v) = explode(":", $header);
+            [$k, $v] = explode(":", $header);
             $key = trim($k);
             $value = trim($v);
-
         }
     }
 }

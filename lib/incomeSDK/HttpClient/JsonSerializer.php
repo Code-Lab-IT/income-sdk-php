@@ -2,8 +2,6 @@
 
 namespace incomeSDK\HttpClient;
 
-use incomeSDK\HttpClient\HttpRequest;
-
 /**
  * Class Json
  * @package incomeSDK\HttpClient

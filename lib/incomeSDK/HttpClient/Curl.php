@@ -25,13 +25,13 @@ class Curl
         $this->curl = $curl;
     }
 
-    public function setOpt($option, $value)
+    public function setOpt($option, $value): Curl
     {
         curl_setopt($this->curl, $option, $value);
         return $this;
     }
 
-    public function close()
+    public function close(): Curl
     {
         curl_close($this->curl);
         return $this;
@@ -42,7 +42,7 @@ class Curl
         return curl_exec($this->curl);
     }
 
-    public function errNo()
+    public function errNo(): int
     {
         return curl_errno($this->curl);
     }
@@ -52,7 +52,7 @@ class Curl
         return curl_getinfo($this->curl, $option);
     }
 
-    public function error()
+    public function error(): string
     {
         return curl_error($this->curl);
     }

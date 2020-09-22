@@ -16,9 +16,9 @@ class Client
 
     const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
-    public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
-    public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
-    public const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+    const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
+    const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
+    const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
 
     /**
      * @var array

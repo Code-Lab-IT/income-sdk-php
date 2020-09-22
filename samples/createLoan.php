@@ -8,6 +8,7 @@ $result = $sdk->createLoan([
     'loan_id' => '1111',
     'country' => 'FIN',
     'type' => 'CAR',
+    'status' => 'Current',
     'currency' => 'USD',
     'issued_date' => '2020-03-15',
     'list_date' => '2020-03-17',
@@ -22,6 +23,13 @@ $result = $sdk->createLoan([
     'extendable_schedule' => true,
     'purpose' => 'some purpose',
     'buyback_guarantee' => false,
+    'saldo' => 13,
+    'remaining_principal' => 21,
+    'term_date' => "2020-09-17",
+    'due_date' => "2020-09-19",
+    'borrower_name' => "Test borrower_name",
+    'period' => 52,
+    'borrower_interest' => 11.5,
     'loan_schedule' => [
         'schedule_components' => [
             'principal' => 'principal',
@@ -63,13 +71,6 @@ $result = $sdk->createLoan([
             [
                 'rowno' => 3,
                 'date' => '2020-11-03',
-                'principal' => 155.2,
-                'interest' => 44.1,
-                'monthly_fee' => 10,
-            ],
-            [
-                'rowno' => 4,
-                'date' => '2020-12-03',
                 'principal' => 155.2,
                 'interest' => 44.1,
                 'monthly_fee' => 10,

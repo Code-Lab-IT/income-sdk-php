@@ -19,6 +19,7 @@ class Client
     private const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
     private const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
     private const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+    private const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
 
     /**
      * @var array
@@ -96,11 +97,11 @@ class Client
      * @param array $loanData
      * @return bool
      */
-    public function createLoan(array $loanData): bool
+    public function createLoan(array $loanData)
     {
         $response = $this->httpRequest(static::CREATE_LOAN_ENDPOINT_URL, ['loan' => $loanData], 'POST');
 
-        return (bool)$response;
+        return $response;
     }
 
     /**
@@ -121,8 +122,25 @@ class Client
      */
     public function getLoansDetails($id): ?Loan
     {
-        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL .$id);
+        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL . $id);
 
         return $response && is_array($response) ? new Loan($response) : null;
+    }
+
+    /**
+     * Update loan schedule
+     * @param int|string $loanId
+     * @param array $scheduleData
+     * @return bool
+     */
+    public function updateLoanSchedule($loanId, array $scheduleData): bool
+    {
+        $response = $this->httpRequest(
+            static::UPDATE_LOAN_SCHEDULE_ENDPOINT_URL . $loanId,
+            ['loan_schedule' => $scheduleData],
+            'PATCH'
+        );
+
+        return (bool)$response;
     }
 }

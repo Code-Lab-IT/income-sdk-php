@@ -5,7 +5,7 @@ require './env.php';
 $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
 $result = $sdk->createLoan([
-    'loan_id' => '1111',
+    'loan_id' => '11112',
     'country' => 'FIN',
     'type' => 'CAR',
     'status' => 'Current',
@@ -81,7 +81,7 @@ $result = $sdk->createLoan([
 ]);
 
 if ($result) {
-    print 'Loan created';
+    print 'Loan created. income_loan_id: '.$result['income_loan_id'];
 } else {
     print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
     print_r($sdk->getErrors());

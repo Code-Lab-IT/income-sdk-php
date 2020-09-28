@@ -6,27 +6,26 @@ $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
 $result = $sdk->updateLoanSchedule(1111, [
     'schedule_components' => [
-        'principal' => 'principal',
+        'capital' => 'principal',
         'interest' => 'interest',
-        'monthly_fee' => 'fee',
-        'admission_fee' => 'fee',
-        'insurance' => 'forward_fee',
-        'penalty_fee' => 'interest',
+        'capitalDebInterest' => 'interest',
     ],
     'schedule' => [
         [
             'rowno' => 1,
             'date' => '2020-09-03',
-            'principal' => 155.2,
-            'interest' => 44.1,
-            'monthly_fee' => 10,
+            'capital' => 200.11,
+            'interest' => 2.21,
+            'capitalDebInterest' => 11.01,
             'repayment' => [
-                'total' => 209.3,
+                'total' => 213.33, //213.33,
                 'repaid' => true,
                 'payments' => [
                     [
                         'date' => '2020-09-01',
-                        'amount' => 200.11,
+                        'capital' => 200.11,
+                        'interest' => 2.21,
+                        'capitalDebInterest' => 11.01,
                     ],
                     [
                         'date' => '2020-09-08',
@@ -35,7 +34,14 @@ $result = $sdk->updateLoanSchedule(1111, [
                 ],
             ],
         ],
-    ]
+        [
+            'rowno' => 2,
+            'date' => '2020-10-03',
+            'capital' => 176.5,
+            'interest' => 11,
+            'capitalDebInterest' => 24.55,
+        ],
+    ],
 ]);
 
 if ($result) {

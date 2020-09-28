@@ -12,11 +12,11 @@ $result = $sdk->createLoan([
     'currency' => 'USD',
     'issued_date' => '2020-03-15',
     'list_date' => '2020-03-17',
-    'issued_amount' => '15.5',
-    'list_amount' => '16.7',
-    'skin_in_the_game' => '23',
-    'repaid_amount' => '11.5',
-    'debt_amount' => '7.13',
+    'issued_amount' => 15.5,
+    'list_amount' => 16.7,
+    'skin_in_the_game' => 23,
+    'repaid_amount' => 11.5,
+    'debt_amount' => 7.13,
     'schedule_type' => 'INTEREST_ONLY',
     'interest_rate' => '89',
     'apr' => '7.3',
@@ -32,27 +32,26 @@ $result = $sdk->createLoan([
     'borrower_interest' => 11.5,
     'loan_schedule' => [
         'schedule_components' => [
-            'principal' => 'principal',
+            'capital' => 'principal',
             'interest' => 'interest',
-            'monthly_fee' => 'fee',
-            'admission_fee' => 'fee',
-            'insurance' => 'forward_fee',
-            'penalty_fee' => 'interest',
+            'capitalDebInterest' => 'interest',
         ],
         'schedule' => [
             [
                 'rowno' => 1,
                 'date' => '2020-09-03',
-                'principal' => 155.2,
-                'interest' => 44.1,
-                'monthly_fee' => 10,
+                'capital' => 200.11,
+                'interest' => 2.21,
+                'capitalDebInterest' => 11.01,
                 'repayment' => [
-                    'total' => 209.3,
+                    'total' => 212.33, //213.33,
                     'repaid' => true,
                     'payments' => [
                         [
                             'date' => '2020-09-01',
-                            'amount' => 200.11,
+                            'capital' => 200.11,
+                            'interest' => 2.21,
+                            'capitalDebInterest' => 11.01,
                         ],
                         [
                             'date' => '2020-09-08',
@@ -64,16 +63,9 @@ $result = $sdk->createLoan([
             [
                 'rowno' => 2,
                 'date' => '2020-10-03',
-                'principal' => 155.2,
-                'interest' => 44.1,
-                'monthly_fee' => 10,
-            ],
-            [
-                'rowno' => 3,
-                'date' => '2020-11-03',
-                'principal' => 155.2,
-                'interest' => 44.1,
-                'monthly_fee' => 10,
+                'capital' => 176.5,
+                'interest' => 11,
+                'capitalDebInterest' => 24.55,
             ],
         ],
     ],
@@ -81,7 +73,7 @@ $result = $sdk->createLoan([
 ]);
 
 if ($result) {
-    print 'Loan created. income_loan_id: '.$result['income_loan_id'];
+    print 'Loan created. income_loan_id: ' . $result['income_loan_id'];
 } else {
     print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
     print_r($sdk->getErrors());

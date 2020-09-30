@@ -76,5 +76,7 @@ if ($result) {
     print 'Loan created. income_loan_id: ' . $result['income_loan_id'];
 } else {
     print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
+    print 'Error message: ' . $sdk->getErrorMessage() . "\n";
+    print 'Errors:' . "\n";
     print_r($sdk->getErrors());
 }

@@ -27,6 +27,11 @@ class Client
     private $errors;
 
     /**
+     * @var array
+     */
+    private $errorsMessage;
+
+    /**
      * @var int
      */
     private $statusCode;
@@ -57,6 +62,15 @@ class Client
     }
 
     /**
+     * Get response error message
+     * @return array|string
+     */
+    public function getErrorMessage()
+    {
+        return $this->errorsMessage;
+    }
+
+    /**
      * Get response errors
      * @return int
      */
@@ -82,7 +96,8 @@ class Client
                 return $response->result['data'] ?? $response->result;
             }
 
-            $this->errors = $response->result['message'] ?? [];
+            $this->errorsMessage = $response->result['message'] ?? '';
+            $this->errors = $response->result['errors'] ?? [];
 
             return false;
 

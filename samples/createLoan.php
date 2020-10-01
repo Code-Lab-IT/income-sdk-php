@@ -5,7 +5,7 @@ require './env.php';
 $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
 $result = $sdk->createLoan([
-    'loan_id' => '11112',
+    'loan_id' => '111123',
     'country' => 'FIN',
     'type' => 'CAR',
     'status' => 'Current',
@@ -44,7 +44,7 @@ $result = $sdk->createLoan([
                 'interest' => 2.21,
                 'capitalDebInterest' => 11.01,
                 'repayment' => [
-                    'total' => 212.33, //213.33,
+                    'total' => 213.33, //213.33,
                     'repaid' => true,
                     'payments' => [
                         [
@@ -52,10 +52,6 @@ $result = $sdk->createLoan([
                             'capital' => 200.11,
                             'interest' => 2.21,
                             'capitalDebInterest' => 11.01,
-                        ],
-                        [
-                            'date' => '2020-09-08',
-                            'amount' => 9.19,
                         ],
                     ],
                 ],

@@ -20,6 +20,7 @@ class Client
     private const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
     private const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
     private const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
+    private const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback/';
 
     /**
      * @var array
@@ -74,7 +75,7 @@ class Client
      * Get response errors
      * @return int
      */
-    public function getStatusCode(): int
+    public function getStatusCode(): ?int
     {
         return $this->statusCode;
     }
@@ -114,9 +115,7 @@ class Client
      */
     public function createLoan(array $loanData)
     {
-        $response = $this->httpRequest(static::CREATE_LOAN_ENDPOINT_URL, ['loan' => $loanData], 'POST');
-
-        return $response;
+        return $this->httpRequest(static::CREATE_LOAN_ENDPOINT_URL, ['loan' => $loanData], 'POST');
     }
 
     /**
@@ -157,5 +156,21 @@ class Client
         );
 
         return (bool)$response;
+    }
+
+    /**
+     * Buyback Loan
+     * @param int $loanId
+     * @param string|null $reason
+     * @return Loan
+     */
+    public function buybackLoan(int $loanId, ?string $reason): ?Loan
+    {
+        $response = $this->httpRequest(static::BUYBACK_LOAN_ENDPOINT_URL, [
+            'loan_id' => $loanId,
+            'reason' => $reason
+        ], 'POST');
+
+        return $response && is_array($response) ? new Loan($response) : null;
     }
 }

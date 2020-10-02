@@ -45,7 +45,7 @@ class HttpClient
     public function request($path, $body = null, $method = null, $headers = []): HttpResponse
     {
         $curl = new Curl();
-        $request = new HttpRequest($path, $this->apiKey, $body);
+        $request = new HttpRequest($path, $this->apiKey, $body, $headers);
 
         $url = $this->baseUrl . $request->getUrl();
         $method = $method ?? 'GET';

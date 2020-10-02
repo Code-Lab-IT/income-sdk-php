@@ -36,14 +36,21 @@ class HttpRequest
      * HttpRequest constructor.
      * @param string $path
      * @param string $apiKey
-     * @param null $body
+     * @param array|null $body
+     * @param array $headers
      * @throws IOException
      */
-    public function __construct($path, $apiKey, $body = null)
+    public function __construct($path, $apiKey, $body = null, $headers = [])
     {
         $this->path = $path;
         $this->apiKey = $apiKey;
         $this->headers = ['content-type' => 'application/json'];
+
+        if (!empty($headers)) {
+            foreach ($headers as $header => $value) {
+                $this->headers[strtolower($header)] = strtolower($value);
+            }
+        }
 
         if (!is_null($body)) {
             $this->body = JsonSerializer::encode($body);

@@ -4,6 +4,7 @@ namespace incomeSDK\Core;
 
 use incomeSDK\HttpClient\HttpClient;
 use incomeSDK\HttpClient\IOException;
+use incomeSDK\Models\BuybackItem;
 use incomeSDK\Models\Loan;
 
 /**
@@ -20,7 +21,7 @@ class Client
     private const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
     private const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
     private const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
-    private const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback/';
+    private const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
 
     /**
      * @var array
@@ -49,7 +50,6 @@ class Client
      */
     public function __construct($apiKey, $devMode = false)
     {
-
         $this->client = new HttpClient($devMode ? self::BASE_URL_DEV : self::BASE_URL_PROD, $apiKey);
     }
 
@@ -126,7 +126,7 @@ class Client
     {
         $response = $this->httpRequest(static::GET_LOANS_LIST_ENDPOINT_URL);
 
-        return Loan::createListFromArray($response);
+        return Loan::createArrayFromArrays($response);
     }
 
     /**
@@ -172,5 +172,22 @@ class Client
         ], 'POST');
 
         return $response && is_array($response) ? new Loan($response) : null;
+    }
+
+    /**
+     * Buyback Loans list
+     *
+     * @param string $dateFrom
+     * @param string $dateTo
+     * @return BuybackItem[]
+     */
+    public function getBuybackLoans(string $dateFrom, string $dateTo)
+    {
+        $response = $this->httpRequest(static::BUYBACK_LOAN_ENDPOINT_URL, [
+            'date_from' => $dateFrom,
+            'date_to' => $dateTo
+        ]);
+
+        return BuybackItem::createArrayFromArrays($response);
     }
 }

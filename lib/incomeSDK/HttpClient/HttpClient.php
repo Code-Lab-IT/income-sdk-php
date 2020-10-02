@@ -48,19 +48,23 @@ class HttpClient
         $request = new HttpRequest($path, $this->apiKey, $body);
 
         $url = $this->baseUrl . $request->getUrl();
+        $method = $method ?? 'GET';
+
+        if ($method === 'GET' && !is_null($body)) {
+            $query = http_build_query($body);
+            $url .= '&' . $query;
+        }
 
         $curl->setOpt(CURLOPT_URL, $url);
 
         // Allowed: DELETE, PUT, GET, POST
-        if ($method) {
-            $curl->setOpt(CURLOPT_CUSTOMREQUEST, $method);
-        }
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, $method);
 
         $curl->setOpt(CURLOPT_HTTPHEADER, $request->getHeaders());
         $curl->setOpt(CURLOPT_RETURNTRANSFER, 1);
         $curl->setOpt(CURLOPT_HEADER, 0);
 
-        if (!is_null($request->body)) {
+        if ($method !== 'GET' && !is_null($request->body)) {
             $curl->setOpt(CURLOPT_POSTFIELDS, $request->body);
         }
 

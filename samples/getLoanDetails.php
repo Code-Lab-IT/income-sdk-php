@@ -4,15 +4,16 @@ require './env.php';
 
 $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
-$result = $sdk->getLoansList();
+if ($_SERVER['argc'] < 2) {
+    die('Use: php getLoanDetails.php [loanId]');
+}
 
-if (!empty($result)) {
-    $loan = $result[0];
+$loanId = $_SERVER['argv'][1];
 
-    $loanDetails = $sdk->getLoansDetails($loan->loan_id);
+$loanDetails = $sdk->getLoansDetails($loanId);
 
+if ($loanDetails) {
     print_r($loanDetails);
-
 } else {
     print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
     print_r($sdk->getErrors());

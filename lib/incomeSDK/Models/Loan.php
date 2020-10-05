@@ -47,21 +47,4 @@ class Loan extends BaseModel
 
         $this->data['loan_schedule'] = new LoanSchedule($this->data['loan_schedule']);
     }
-
-    /**
-     * @param $loansArray
-     * @return array
-     */
-    public static function createListFromArray($loansArray): array
-    {
-        $loansList = [];
-
-        if (!empty($loansArray) && is_array($loansArray)) {
-            foreach ($loansArray as $item) {
-                $loansList[] = new Loan($item);
-            }
-        }
-
-        return $loansList;
-    }
 }

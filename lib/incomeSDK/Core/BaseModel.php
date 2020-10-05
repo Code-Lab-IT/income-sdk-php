@@ -15,6 +15,23 @@ class BaseModel
     }
 
     /**
+     * @param $items
+     * @return self[]
+     */
+    public static function createArrayFromArrays($items): array
+    {
+        $list = [];
+
+        if (!empty($items) && is_array($items)) {
+            foreach ($items as $item) {
+                $list[] = new static($item);
+            }
+        }
+
+        return $list;
+    }
+
+    /**
      * @param string $name
      * @return mixed|string
      */

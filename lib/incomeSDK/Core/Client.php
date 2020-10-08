@@ -17,11 +17,11 @@ class Client
 
     private const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
-    private const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
-    private const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
-    private const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
-    private const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
-    private const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
+    public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
+    public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
+    public const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+    public const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
+    public const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
 
     /**
      * @var array

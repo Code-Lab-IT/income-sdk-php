@@ -35,6 +35,11 @@ POST '/loans/buyback?api_key=12345678901234567890123456789012'
           "rowno": "1",
           "capital": "200.11",
           "interest": "2.21",
+          "schedule_components": {
+              "capital": "principal",
+              "interest": "interest",
+              "capitalDebtInterest": "interest"
+          },
           "capitalDebInterest": 11.01,
           "repayment": {
             "total": 213.33,
@@ -49,12 +54,7 @@ POST '/loans/buyback?api_key=12345678901234567890123456789012'
             ]
           }
         }
-      ],
-      "schedule_components": {
-        "capital": "principal",
-        "interest": "interest",
-        "capitalDebInterest": "interest"
-      }
+      ]
     },
     "currency": "BRL",
     "status": "Current",

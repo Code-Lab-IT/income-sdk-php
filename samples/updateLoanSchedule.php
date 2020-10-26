@@ -5,11 +5,6 @@ require './env.php';
 $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
 $result = $sdk->updateLoanSchedule(1111, [
-    'schedule_components' => [
-        'capital' => 'principal',
-        'interest' => 'interest',
-        'capitalDebInterest' => 'interest',
-    ],
     'schedule' => [
         [
             'rowno' => 1,
@@ -17,6 +12,11 @@ $result = $sdk->updateLoanSchedule(1111, [
             'capital' => 200.11,
             'interest' => 2.21,
             'capitalDebInterest' => 11.01,
+            'schedule_components' => [
+                'capital' => 'principal',
+                'interest' => 'interest',
+                'capitalDebInterest' => 'interest',
+            ],
             'repayment' => [
                 'total' => 213.33, //213.33,
                 'repaid' => true,

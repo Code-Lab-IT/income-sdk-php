@@ -41,6 +41,11 @@ GET /loans/view/[ID]?api_key=12345678901234567890123456789012'
           "repayment": {
             "total": 222.26,
             "repaid": true,
+            "schedule_components": {
+              "capital": "principal",
+              "interest": "interest",
+              "capitalDebtInterest": "interest"
+            },
             "payments": [
               {
                 "date": "2020-08-05",
@@ -58,18 +63,15 @@ GET /loans/view/[ID]?api_key=12345678901234567890123456789012'
           "rowno": "2",
           "capital": 145.12,
           "interest": 77.14,
+          "schedule_components": {
+          },
           "repayment": {
             "total": 0,
             "repaid": false
           },
           "capitalDebtInterest": 0
         }
-      ],
-      "schedule_components": {
-        "capital": "principal",
-        "interest": "interest",
-        "capitalDebtInterest": "interest"
-      }
+      ]
     },
     "currency": "BRL",
     "status": "Current",

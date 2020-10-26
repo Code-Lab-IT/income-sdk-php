@@ -32,6 +32,11 @@ POST '/loans/store?api_key=12345678901234567890123456789012'
           "repayment": {
             "total": 222.26,
             "repaid": true,
+            "schedule_components": {
+              "capital": "principal",
+              "interest": "interest",
+              "capitalDebtInterest": "interest"
+            },
             "payments": [
               {
                 "date": "2020-08-05",
@@ -56,12 +61,7 @@ POST '/loans/store?api_key=12345678901234567890123456789012'
           },
           "capitalDebInterest": 0
         }
-      ],
-      "schedule_components": {
-        "capital": "principal",
-        "interest": "interest",
-        "capitalDebInterest": "interest"
-      }
+      ]
     },
     "repaid_amount": "133.26",
     "schedule_type": "INTEREST_ONLY",

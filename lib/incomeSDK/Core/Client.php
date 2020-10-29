@@ -2,10 +2,11 @@
 
 namespace incomeSDK\Core;
 
+use incomeSDK\ApiTraits\BankTransactionsTrait;
+use incomeSDK\ApiTraits\BuybackTrait;
+use incomeSDK\ApiTraits\LoansTrait;
 use incomeSDK\HttpClient\HttpClient;
 use incomeSDK\HttpClient\IOException;
-use incomeSDK\Models\BuybackItem;
-use incomeSDK\Models\Loan;
 
 /**
  * Class incomeSDK
@@ -13,8 +14,11 @@ use incomeSDK\Models\Loan;
  */
 class Client
 {
-    private const BASE_URL_PROD = 'https://income-backoffice.code-lab.it/lo-api/';
+    use LoansTrait;
+    use BuybackTrait;
+    use BankTransactionsTrait;
 
+    private const BASE_URL_PROD = 'https://income-backoffice.code-lab.it/lo-api/';
     private const BASE_URL_DEV = 'http://localhost:8180/lo-api/';
 
     public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
@@ -22,6 +26,7 @@ class Client
     public const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
     public const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
     public const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
+    public const BANK_TRANSFER_ENDPOINT_URL = 'loans/bank-transfer';
 
     /**
      * @var array
@@ -106,88 +111,5 @@ class Client
             $this->errors = $e->getMessage();
             return false;
         }
-    }
-
-    /**
-     * Create (list) new Loan
-     * @param array $loanData
-     * @return bool
-     */
-    public function createLoan(array $loanData)
-    {
-        return $this->httpRequest(static::CREATE_LOAN_ENDPOINT_URL, ['loan' => $loanData], 'POST');
-    }
-
-    /**
-     * Return loans list (array with Loan objects)
-     * @return Loan[]
-     */
-    public function getLoansList(): array
-    {
-        $response = $this->httpRequest(static::GET_LOANS_LIST_ENDPOINT_URL);
-
-        return Loan::createArrayFromArrays($response);
-    }
-
-    /**
-     * Return details (Loan object)
-     * @param int $id - income_loan_id or loan_id
-     * @return Loan|null
-     */
-    public function getLoansDetails($id): ?Loan
-    {
-        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL . $id);
-
-        return $response && is_array($response) ? new Loan($response) : null;
-    }
-
-    /**
-     * Update loan schedule
-     * @param int|string $loanId
-     * @param array $scheduleData
-     * @return bool
-     */
-    public function updateLoanSchedule($loanId, array $scheduleData): bool
-    {
-        $response = $this->httpRequest(
-            static::UPDATE_LOAN_SCHEDULE_ENDPOINT_URL . $loanId,
-            ['loan_schedule' => $scheduleData],
-            'PATCH'
-        );
-
-        return (bool)$response;
-    }
-
-    /**
-     * Buyback Loan
-     * @param int $loanId
-     * @param string|null $reason
-     * @return Loan
-     */
-    public function buybackLoan(int $loanId, ?string $reason): ?Loan
-    {
-        $response = $this->httpRequest(static::BUYBACK_LOAN_ENDPOINT_URL, [
-            'loan_id' => $loanId,
-            'reason' => $reason
-        ], 'POST');
-
-        return $response && is_array($response) ? new Loan($response) : null;
-    }
-
-    /**
-     * Buyback Loans list
-     *
-     * @param string $dateFrom
-     * @param string $dateTo
-     * @return BuybackItem[]
-     */
-    public function getBuybackLoans(string $dateFrom, string $dateTo)
-    {
-        $response = $this->httpRequest(static::BUYBACK_LOAN_ENDPOINT_URL, [
-            'date_from' => $dateFrom,
-            'date_to' => $dateTo
-        ]);
-
-        return BuybackItem::createArrayFromArrays($response);
     }
 }

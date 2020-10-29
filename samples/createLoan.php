@@ -56,13 +56,6 @@ $result = $sdk->createLoan([
                     ],
                 ],
             ],
-            [
-                'rowno' => 2,
-                'date' => '2020-10-03',
-                'capital' => 176.5,
-                'interest' => 11,
-                'capitalDebInterest' => 24.55,
-            ],
         ],
     ],
     'timezone' => 'America/Anguilla',

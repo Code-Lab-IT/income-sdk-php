@@ -16,7 +16,7 @@ class BaseModel
 
     /**
      * @param $items
-     * @return self[]
+     * @return static[]
      */
     public static function createArrayFromArrays($items): array
     {

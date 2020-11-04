@@ -42,3 +42,6 @@ Income-SDK is open source and available under the MIT license.
 
 ## Contributing
 Pull requests and issues are welcome. Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for more details.
+
+## REST API Documentation
+Pull requests and issues are welcome. Please see [https://github.com/Code-Lab-IT/Income-API-Documentation](https://github.com/Code-Lab-IT/Income-API-Documentation) for more details.

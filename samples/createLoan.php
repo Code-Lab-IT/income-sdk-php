@@ -31,27 +31,27 @@ $result = $sdk->createLoan([
     'period' => 52,
     'borrower_interest' => 11.5,
     'loan_schedule' => [
+        'schedule_components' => [
+            'capital' => 'principal',
+            'interest' => 'interest',
+            'capitalDebInterest' => 'interest',
+        ],
         'schedule' => [
             [
                 'rowno' => 1,
                 'date' => '2020-09-03',
-                'capital' => 200.11,
-                'interest' => 2.21,
-                'capitalDebInterest' => 11.01,
                 'schedule_components' => [
-                    'capital' => 'principal',
-                    'interest' => 'interest',
-                    'capitalDebInterest' => 'interest',
+                    'capital' => 200.11,
+                    'interest' => 2.21,
+                    'capitalDebInterest' => 11.01,
                 ],
                 'repayment' => [
-                    'total' => 213.33, //213.33,
+                    'total' => 213.33,
                     'repaid' => true,
                     'payments' => [
                         [
                             'date' => '2020-09-01',
-                            'capital' => 200.11,
-                            'interest' => 2.21,
-                            'capitalDebInterest' => 11.01,
+                            'amount' => 213.33,
                         ],
                     ],
                 ],

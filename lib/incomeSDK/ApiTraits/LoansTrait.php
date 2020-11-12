@@ -55,4 +55,14 @@ trait LoansTrait
 
         return (bool)$response;
     }
+
+    /**
+     * Return loan investment list
+     * @param int $id - income_loan_id or loan_id
+     * @return array|null
+     */
+    public function getLoanInvestments($id)
+    {
+        return $this->httpRequest(static::GET_LOAN_INVESTMENTS . $id);
+    }
 }

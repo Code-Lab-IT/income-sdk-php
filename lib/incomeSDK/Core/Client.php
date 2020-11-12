@@ -24,6 +24,7 @@ class Client
     public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
     public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
     public const GET_LOANS_DETAILS_ENDPOINT_URL = 'loans/view/';
+    public const GET_LOAN_INVESTMENTS = 'loans/investment/';
     public const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
     public const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
     public const BANK_TRANSFER_ENDPOINT_URL = 'loans/bank-transfer';

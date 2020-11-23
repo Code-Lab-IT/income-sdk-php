@@ -5,7 +5,7 @@ namespace incomeSDK\Models;
 use incomeSDK\Core\BaseModel;
 
 /**
- * @property int|null $income_loan_id
+ * @property int|null $income_loan_ref
  * @property int|null $loan_id
  * @property string|null $type
  * @property string|null $country

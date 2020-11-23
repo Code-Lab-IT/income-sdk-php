@@ -62,7 +62,7 @@ $result = $sdk->createLoan([
 ]);
 
 if ($result) {
-    print 'Loan created. income_loan_id: ' . $result['income_loan_id'];
+    print 'Loan created. income_loan_ref: ' . $result['income_loan_ref'];
 } else {
     print 'Errors! Status Code:' . $sdk->getStatusCode() . "\n";
     print 'Error message: ' . $sdk->getErrorMessage() . "\n";

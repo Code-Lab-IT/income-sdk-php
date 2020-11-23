@@ -29,7 +29,7 @@ trait LoansTrait
 
     /**
      * Return details (Loan object)
-     * @param int $id - income_loan_id or loan_id
+     * @param int $id - income_loan_ref or loan_id
      * @return Loan|null
      */
     public function getLoansDetails($id): ?Loan
@@ -58,7 +58,7 @@ trait LoansTrait
 
     /**
      * Return loan investment list
-     * @param int $id - income_loan_id or loan_id
+     * @param int $id - income_loan_ref or loan_id
      * @return array|null
      */
     public function getLoanInvestments($id)

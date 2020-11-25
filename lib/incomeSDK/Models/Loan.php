@@ -6,7 +6,6 @@ use incomeSDK\Core\BaseModel;
 
 /**
  * @property int|null $income_loan_ref
- * @property int|null $loan_id
  * @property string|null $type
  * @property string|null $country
  * @property string|null $currency

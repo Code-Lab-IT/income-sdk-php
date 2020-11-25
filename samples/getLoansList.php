@@ -8,7 +8,6 @@ $result = $sdk->getLoansList();
 
 if ($result) {
     foreach ($result as $loan) {
-        echo 'Loan ID: ' . $loan->loan_id . "\n";
         echo 'Loan Income Ref: ' . $loan->income_loan_ref . "\n";
         echo "-----------------------------\n";
     }

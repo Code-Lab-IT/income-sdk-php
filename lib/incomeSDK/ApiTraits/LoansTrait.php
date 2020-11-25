@@ -29,12 +29,12 @@ trait LoansTrait
 
     /**
      * Return details (Loan object)
-     * @param int $id - income_loan_ref or loan_id
+     * @param int $income_loan_ref
      * @return Loan|null
      */
-    public function getLoansDetails($id): ?Loan
+    public function getLoansDetails($income_loan_ref): ?Loan
     {
-        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL . $id);
+        $response = $this->httpRequest(static::GET_LOANS_DETAILS_ENDPOINT_URL . $income_loan_ref);
 
         return $response && is_array($response) ? new Loan($response) : null;
     }
@@ -58,11 +58,11 @@ trait LoansTrait
 
     /**
      * Return loan investment list
-     * @param int $id - income_loan_ref or loan_id
+     * @param int $income_loan_ref
      * @return array|null
      */
-    public function getLoanInvestments($id)
+    public function getLoanInvestments($income_loan_ref)
     {
-        return $this->httpRequest(static::GET_LOAN_INVESTMENTS . $id);
+        return $this->httpRequest(static::GET_LOAN_INVESTMENTS . $income_loan_ref);
     }
 }

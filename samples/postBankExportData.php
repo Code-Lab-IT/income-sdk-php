@@ -21,7 +21,7 @@ $result = $sdk->postBankExportData([
                             'monthly_fee' => 10,
                             'principal' => 246.12,
                         ],
-                        'loan_id' => 100001,
+                        'income_loan_ref' => 100001,
                         'type' => 'borrower repayment',
                     ],
                 ],

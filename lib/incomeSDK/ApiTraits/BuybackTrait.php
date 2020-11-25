@@ -16,7 +16,7 @@ trait BuybackTrait
     public function buybackLoan(int $loanId, ?string $reason): ?Loan
     {
         $response = $this->httpRequest(static::BUYBACK_LOAN_ENDPOINT_URL, [
-            'loan_id' => $loanId,
+            'income_loan_ref' => $loanId,
             'reason' => $reason
         ], 'POST');
 

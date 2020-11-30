@@ -16,16 +16,13 @@ use incomeSDK\Core\BaseModel;
  * @property float|null $apr
  * @property int|null $skin_in_the_game
  * @property float|null $issued_amount
- * @property float|null $list_amount
  * @property float|null $repaid_amount
  * @property float|null $debt_amount
- * @property float|null $saldo
  * @property string|null $purpose
  * @property string|null $issued_date
  * @property float|null $remaining_principal
  * @property string|null $paid_out_date
  *
- * @property string|null $term_date
  * @property string|null $due_date
  * @property string|null $list_datetime
  * @property bool|null $buyback_guarantee

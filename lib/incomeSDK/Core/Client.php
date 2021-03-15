@@ -19,7 +19,7 @@ class Client
     use BankTransactionsTrait;
 
     private const BASE_URL_PROD = 'https://api.getincome.com/lo-api/';
-    private const BASE_URL_DEV = 'http://income-backoffice.code-lab.it/lo-api/';
+    private const BASE_URL_DEV = 'https://income-backoffice.code-lab.it/lo-api/';
 
     public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
     public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';

@@ -28,6 +28,7 @@ class Client
     public const UPDATE_LOAN_SCHEDULE_ENDPOINT_URL = 'loans/update-schedule/';
     public const BUYBACK_LOAN_ENDPOINT_URL = 'loans/buyback';
     public const BANK_TRANSFER_ENDPOINT_URL = 'loans/bank-transfer';
+    public const UPLOAD_COLLATERAL = 'loans/upload-collateral/';
 
     /**
      * @var array

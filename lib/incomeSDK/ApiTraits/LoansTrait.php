@@ -65,4 +65,23 @@ trait LoansTrait
     {
         return $this->httpRequest(static::GET_LOAN_INVESTMENTS . $income_loan_ref);
     }
+
+  /**
+   * Upload LO callateral file to Income
+   *
+   * @param int $income_loan_ref
+   * @param string $fileName
+   * @param string $fileContents plain file contents
+   * @return bool
+   */
+    public function uploadCollateral(int $income_loan_ref, string $fileName, string $fileContents)
+    {
+      $response = $this->httpRequest(
+        static::UPLOAD_COLLATERAL . $income_loan_ref,
+        ['file_name' => $fileName, 'file_contents' => base64_encode($fileContents)],
+        'POST'
+      );
+
+      return (bool)$response;
+    }
 }

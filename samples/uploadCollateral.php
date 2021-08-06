@@ -4,8 +4,8 @@ require './env.php';
 
 $sdk = new incomeSDK\Core\Client(API_KEY, DEV_MODE);
 
-// base64 encoded "hello world"
-$result = $sdk->uploadCollateral(1111, 'example.txt', 'aGVsbG8gd29ybGQ=');
+
+$result = $sdk->uploadCollateral(1111, 'example.txt', 'Hello world!');
 
 if ($result)
 {

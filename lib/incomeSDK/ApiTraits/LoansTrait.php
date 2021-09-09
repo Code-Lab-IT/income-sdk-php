@@ -67,14 +67,16 @@ trait LoansTrait
     }
 
   /**
-   * Upload LO callateral file to Income
+   * Upload public LO callateral file to Income. 
+   * The uploaded file is displayed publicly on Income Marketplace, meaning that every person can access it. 
+   * Public collateral file MUST NOT include sensitive info about the borrowers. (Example of sensitive data: borrower's full name, phone number, email address etc.)
    *
    * @param int $income_loan_ref
    * @param string $fileName
    * @param string $fileContents plain file contents
    * @return bool
    */
-    public function uploadCollateral(int $income_loan_ref, string $fileName, string $fileContents)
+    public function uploadCollateral(int $income_loan_ref, string $fileName, string $fileContents): bool
     {
       $response = $this->httpRequest(
         static::UPLOAD_COLLATERAL . $income_loan_ref,
@@ -84,4 +86,24 @@ trait LoansTrait
 
       return (bool)$response;
     }
+
+  /**
+   * Upload private LO callateral file to Income.
+   * Private collateral file can include sensitive info about the borrowers. (Example of sensitive data: borrower's full name, phone number, email address etc.)
+   * 
+   * @param int $income_loan_ref
+   * @param string $fileName
+   * @param string $fileContents plain file contents
+   * @return bool
+   */
+  public function uploadPrivateCollateral(int $income_loan_ref, string $fileName, string $fileContents): bool
+  {
+    $response = $this->httpRequest(
+      static::UPLOAD_PRIVATE_COLLATERAL . $income_loan_ref,
+      ['file_name' => $fileName, 'file_contents' => base64_encode($fileContents)],
+      'POST'
+    );
+
+    return (bool)$response;
+  }
 }

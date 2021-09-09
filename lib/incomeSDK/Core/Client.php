@@ -87,31 +87,31 @@ class Client
         return $this->statusCode;
     }
 
-    /**
-     * Make http request
-     * @param string $path
-     * @param $data
-     * @param string|null $method
-     * @return mixed
-     */
-    public function httpRequest(string $path, $data = null, string $method = null)
+  public function httpRequest(string $path, $data = null, string $method = null)
+  {
+    try
     {
-        try {
-            $response = $this->client->request($path, $data, $method);
-            $this->statusCode = (int)$response->statusCode;
-
-            if ($response->statusCode === 200 && $response->result['success']) {
-                return $response->result['data'] ?? $response->result;
-            }
-
-            $this->errorsMessage = $response->result['message'] ?? '';
-            $this->errors = $response->result['errors'] ?? [];
-
-            return false;
-
-        } catch (IOException $e) {
-            $this->errors = $e->getMessage();
-            return false;
-        }
+      $response = $this->client->request($path, $data, $method);
+      $this->statusCode = (int)$response->statusCode;
+      if ($response->statusCode === 200 && $response->result['success'])
+      {
+        return $response->result['data'] ?? $response->result;
+      }
+      if ($response->statusCode === 405)
+      {
+        $this->errorsMessage = '405 - Method not allowed! Accessing wrong / non-existing endpoint... out-dated SDK?';
+        $this->errors = [];
+        return false;
+      }
+      $this->errorsMessage = $response->result['message'] ?? '';
+      $this->errors = $response->result['errors'] ?? [];
+      return false;
     }
+    catch (IOException $e)
+    {
+      $this->errors = $e->getMessage();
+      return false;
+    }
+  }
+    
 }

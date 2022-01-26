@@ -18,8 +18,8 @@ class Client
     use BuybackTrait;
     use BankTransactionsTrait;
 
-    private const BASE_URL_PROD = 'https://api.getincome.com/lo-api/';
-    private const BASE_URL_DEV = 'https://income-backoffice.code-lab.it/lo-api/';
+    protected const BASE_URL_PROD = 'https://api.getincome.com/lo-api/';
+    protected const BASE_URL_DEV = 'https://income-backoffice.code-lab.it/lo-api/';
 
     public const CREATE_LOAN_ENDPOINT_URL = 'loans/store';
     public const GET_LOANS_LIST_ENDPOINT_URL = 'loans/list';
@@ -34,22 +34,22 @@ class Client
     /**
      * @var array
      */
-    private $errors;
+    protected $errors;
 
     /**
      * @var array
      */
-    private $errorsMessage;
+    protected $errorsMessage;
 
     /**
      * @var int
      */
-    private $statusCode;
+    protected $statusCode;
 
     /**
      * @var HttpClient
      */
-    private $client;
+    protected $client;
 
     /**
      * incomeSDK constructor.
